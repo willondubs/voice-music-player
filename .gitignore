@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Logs
+logs/*.log
+*.log
+
+# Models (large files)
+models/
+!models/.gitkeep
+
+# TTS files (large files)
+tts/piper
+tts/*.onnx
+tts/*.tar.gz
+!tts/.gitkeep
+
+# Configuration (may contain secrets)
+config/config.json
+
+# Temporary files
+*.wav
+*.raw
+*.tmp
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# System
+.env

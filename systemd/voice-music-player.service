@@ -1,0 +1,39 @@
+[Unit]
+Description=Voice-Controlled Music Player
+After=network.target sound.target bluetooth.target mopidy.service snapserver.service
+Wants=bluetooth.target mopidy.service snapserver.service
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/voice-music-player
+Environment="PATH=/home/pi/voice-music-player/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart=/home/pi/voice-music-player/venv/bin/python3 /home/pi/voice-music-player/src/main.py
+
+# Restart configuration
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=200
+StartLimitBurst=5
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=voice-music-player
+
+# Resource limits
+Nice=-5
+IOSchedulingClass=realtime
+IOSchedulingPriority=0
+
+# Security settings (adjust as needed)
+# Uncomment these for additional security
+#NoNewPrivileges=true
+#PrivateTmp=true
+#ProtectSystem=strict
+#ProtectHome=read-only
+#ReadWritePaths=/home/pi/voice-music-player/logs
+
+[Install]
+WantedBy=multi-user.target
